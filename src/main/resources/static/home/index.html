@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+        <!-- Font Awesome CDN para ícones -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>WR E-Commerce - Home</title>
+        <link rel="stylesheet" href="../css/style.css">
+        <style>
+        /* Menu hambúrguer responsivo para telas <= 1024px */
+        @media (max-width: 1024px) {
+            .menu-toggle {
+                display: block !important;
+                background: none;
+                border: none;
+                color: #fff;
+                font-size: 2em;
+                margin-left: auto;
+                cursor: pointer;
+                z-index: 1001;
+            }
+            .menu-principal {
+                display: none !important;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100vw;
+                background: #23272f;
+                box-shadow: 0 8px 32px #000b;
+                border-radius: 0 0 1em 1em;
+                padding: 1.2em 0 1.2em 0;
+                gap: 1.2em;
+                z-index: 1000;
+                opacity: 0.98;
+            }
+            .menu-principal.show {
+                display: flex !important;
+            }
+            .header-flex {
+                flex-direction: row;
+                align-items: center;
+                position: relative;
+            }
+        }
+        @media (max-width: 1024px) {
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5em;
+                text-align: center;
+            }
+        }
+        </style>
+
+        <!-- =========================
+            ANIMAÇÃO DE PARTÍCULAS MODERNA
+        ========================= -->
+    </head>
+    <body>
+        <header>
+            <div class="header-flex" style="align-items: center; justify-content: space-between; position: relative;">
+                <a href="index.html"><img class="logo-wr" src="img/logoWR.png" alt="Logo WR E-Commerce" /></a>
+                <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" style="display: none;"><i class="fas fa-bars"></i></button>
+                <nav class="menu-principal" id="menuPrincipal">
+                    <a href="./index.html"><i class="fas fa-house"></i> Home</a>
+                    <a href="camisa.html"><i class="fas fa-shirt"></i> Camisas</a>
+                    <a href="bermuda.html"><i class="fas fa-person-walking"></i> Bermudas</a>
+                    <a href="acessorios.html"><i class="fas fa-gem"></i> Acessórios</a>
+                    <a href="eletronicos.html"><i class="fas fa-headphones"></i> Eletrônicos</a>
+                    <a href="carrinho.html"><i class="fas fa-cart-shopping"></i> Carrinho</a>
+                </nav>
+            </div>
+        </header>
+        <main class="home-bg">
+            <a id="main-content"></a>
+            <!-- A imagem de fundo agora é definida via CSS, texto ficará sobre ela -->
+            <section class="banner-atrativo">
+                <div class="banner-texto" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <h2>Descubra o melhor da moda e tecnologia!</h2>
+                    <p>
+                        Renove seu estilo com camisas, bermudas e acessórios exclusivos.<br>
+                        Surpreenda-se com fones, relógios e eletrônicos de última geração.<br>
+                        Qualidade, variedade e preço justo para você se destacar em qualquer ocasião!
+                    </p>
+                    <a class="btn-comprar" href="camisa.html" style="margin-top: 1.2em; display: inline-block; font-size: 1.2em; padding: 0.8em 2.2em; border-radius: 0.7em; background: #007bff; color: #fff; font-weight: bold; text-decoration: none; box-shadow: 0 2px 12px #0003; transition: background 0.2s;">Conheça nossa loja</a>
+                </div>
+            </section>
+        </main>
+        <footer style="position: relative; z-index: 10; pointer-events: auto;">
+            <div class="footer-content" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 2em; max-width: 1200px; margin: 0 auto; padding: 2em 0 1em 0;">
+                <div class="footer-info" style="flex:2; min-width:220px; display:flex; flex-direction:column; gap:1em; color:#fff;">
+                    <div style="font-size:1.1em;">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Solimões+49+Diadema+SP+099031-025" target="_blank" style="color:#fff; text-decoration:underline; cursor:pointer;">
+                            Solimões, 49 - Diadema/SP, CEP 099031-025
+                        </a>
+                    </div>
+                    <div style="font-size:1.1em;"><i class="fas fa-phone"></i> <a href="tel:+5511932563211" style="color:#fff;text-decoration:none; cursor:pointer;">(11) 93256-3211</a> &nbsp;|&nbsp; <a href="https://wa.me/5511932563211" target="_blank" style="color:#25D366;text-decoration:none; cursor:pointer;"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+                    <div style="display:flex; gap:1em; flex-wrap:wrap;">
+                        <a href="politica-privacidade.html" style="color:#fff;text-decoration:underline; cursor:pointer;">Política de Privacidade</a>
+                        <a href="termos-de-uso.html" style="color:#fff;text-decoration:underline; cursor:pointer;">Termos de Uso</a>
+                    </div>
+                </div>
+                <div class="footer-social" style="flex:1; min-width:160px; display:flex; flex-direction:column; gap:1em; align-items:flex-start;">
+                    <span style="font-weight:bold; color:#fff;">Redes Sociais</span>
+                    <div style="display:flex; gap:1em;">
+                        <a href="https://www.facebook.com/wagner.rodrigo.5454?locale=pt_BR" target="_blank" aria-label="Facebook" style="color: #4267B2; cursor:pointer;"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="https://www.instagram.com/_vaoficial/?hl=pt-br" target="_blank" aria-label="Instagram" style="color: #E1306C; cursor:pointer;"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="https://twitter.com" target="_blank" aria-label="Twitter" style="color: #1DA1F2; cursor:pointer;"><i class="fab fa-x-twitter fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="footer-cards" style="flex:1; min-width:180px; display:flex; flex-direction:column; gap:0.7em; align-items:flex-start;">
+                    <span style="font-weight:bold; color:#fff;">Cartões aceitos</span>
+                    <div style="display:flex; gap:0.7em; align-items:center;">
+                        <i class="fab fa-cc-visa fa-2x" style="color:#1a1f71;"></i>
+                        <i class="fab fa-cc-mastercard fa-2x" style="color:#eb001b;"></i>
+                        <i class="fab fa-cc-amex fa-2x" style="color:#2e77bb;"></i>
+                        <i class="fab fa-cc-diners-club fa-2x" style="color:#0069aa;"></i>
+                        <i class="fab fa-cc-discover fa-2x" style="color:#f76b1c;"></i>
+                        <i class="fab fa-cc-paypal fa-2x" style="color:#003087;"></i>
+                        <i class="fab fa-pix fa-2x" style="color:#00e676;"></i>
+                    </div>
+                </div>
+            </div>
+            <div style="background: #181818; padding: 0.7em 0 0.3em 0; width: 100%; margin-top: 0.5em;">
+                <span style="display:block; text-align:center; color:#fff; font-size:1.08em; letter-spacing:0.5px;">&copy; 2026 WR Todos os direitos reservados.</span>
+            </div>
+                <script>
+                // Botão de acessibilidade: alto contraste, foco visível e atalho
+                window.onload = function() {
+                    var btnAccess = document.getElementById('toggle-access');
+                    if (btnAccess) {
+                        btnAccess.onclick = function() {
+                            document.body.classList.toggle('high-contrast');
+                        };
+                    }
+                    // Atalho de teclado: Alt+A ativa acessibilidade
+                    document.addEventListener('keydown', function(e) {
+                        if ((e.altKey || e.ctrlKey) && (e.key === 'a' || e.key === 'A')) {
+                            document.body.classList.toggle('high-contrast');
+                        }
+                    });
+                };
+                </script>
+        </footer>
+        <!-- =========================
+             SCRIPTS MODERNOS E ANIMAÇÕES
+        ========================= -->
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles@3.1.0/tsparticles.bundle.min.js"></script>
+                        <!-- Script do menu hambúrguer já incluído abaixo -->
+                <script>
+                    // Menu hambúrguer responsivo
+                    const menuToggle = document.getElementById('menuToggle');
+                    const menuPrincipal = document.getElementById('menuPrincipal');
+                    function closeMenuOnResize() {
+                        if (window.innerWidth > 1024) {
+                            menuPrincipal.classList.remove('show');
+                            menuPrincipal.style.display = '';
+                            menuToggle.style.display = 'none';
+                        } else {
+                            menuToggle.style.display = 'block';
+                            menuPrincipal.classList.remove('show');
+                            menuPrincipal.style.display = 'none';
+                        }
+                    }
+                    if (menuToggle && menuPrincipal) {
+                        menuToggle.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            if (menuPrincipal.classList.contains('show')) {
+                                menuPrincipal.classList.remove('show');
+                                menuPrincipal.style.display = 'none';
+                            } else {
+                                menuPrincipal.classList.add('show');
+                                menuPrincipal.style.display = 'flex';
+                            }
+                        });
+                        // Fecha o menu ao clicar fora
+                        document.addEventListener('click', (e) => {
+                            if (!menuPrincipal.contains(e.target) && !menuToggle.contains(e.target)) {
+                                menuPrincipal.classList.remove('show');
+                                menuPrincipal.style.display = 'none';
+                            }
+                        });
+                        window.addEventListener('resize', closeMenuOnResize);
+                        // Inicializa o estado correto ao carregar
+                        window.addEventListener('DOMContentLoaded', closeMenuOnResize);
+                    }
+                </script>
+        <script>
+            // Alternar modo noturno
+            document.getElementById('toggle-dark')?.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+            });
+            // Partículas de fundo tecnológico
+            window.addEventListener('DOMContentLoaded', () => {
+                tsParticles.load("particles-js", {
+                    fpsLimit: 60,
+                    background: { color: "transparent" },
+                    particles: {
+                        number: { value: 60, density: { enable: true, area: 800 } },
+                        color: { value: ["#007bff", "#ff9800", "#00e676", "#fff"] },
+                        shape: { type: "circle" },
+                        opacity: { value: 0.5 },
+                        size: { value: { min: 2, max: 5 } },
+                        move: { enable: true, speed: 1.5, direction: "none", outModes: "out" },
+                        links: { enable: true, distance: 120, color: "#fff", opacity: 0.2, width: 1 }
+                    },
+                    detectRetina: true
+                });
+            });
+        </script>
+    </body>
+    <script>
+    </script>
+</html>

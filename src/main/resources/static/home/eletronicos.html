@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+			<link rel="stylesheet" href="../css/style.css">
+			<style>
+			@media (max-width: 1024px) {
+				.menu-toggle {
+					display: block !important;
+					background: none;
+					border: none;
+					color: #fff;
+					font-size: 2em;
+					margin-left: auto;
+					cursor: pointer;
+					z-index: 1001;
+				}
+				.menu-principal {
+					display: none !important;
+					flex-direction: column;
+					position: absolute;
+					top: 70px;
+					left: 0;
+					width: 100vw;
+					background: #23272f;
+					box-shadow: 0 8px 32px #000b;
+					border-radius: 0 0 1em 1em;
+					padding: 1.2em 0 1.2em 0;
+					gap: 1.2em;
+					z-index: 1000;
+					opacity: 0.98;
+				}
+				.menu-principal.show {
+					display: flex !important;
+				}
+				.header-flex {
+					flex-direction: row;
+					align-items: center;
+					position: relative;
+				}
+			}
+			@media (max-width: 1024px) {
+				.footer-content {
+					flex-direction: column;
+					align-items: center;
+					gap: 1.5em;
+					text-align: center;
+				}
+			}
+			</style>
+		<style>
+			.modal-img-bg {
+				display: none;
+				position: fixed;
+				z-index: 9999;
+				left: 0; top: 0; width: 100vw; height: 100vh;
+				background: rgba(0,0,0,0.85);
+				justify-content: center;
+				align-items: center;
+				cursor: zoom-out;
+			}
+			.modal-img-bg.active { display: flex; }
+			.modal-img-zoom {
+				max-width: 80vw;
+				max-height: 80vh;
+				border-radius: 1em;
+				box-shadow: 0 8px 32px #000b;
+				position: relative;
+				background: #222;
+			}
+			.lupa-zoom {
+				position: absolute;
+				top: 12px; right: 12px;
+				background: #fff;
+				color: #007bff;
+				border-radius: 50%;
+				width: 38px; height: 38px;
+				display: flex; align-items: center; justify-content: center;
+				font-size: 1.5em;
+				box-shadow: 0 2px 8px #0006;
+				cursor: pointer;
+				z-index: 2;
+				transition: background 0.2s;
+			}
+			.lupa-zoom:hover { background: #e3f2fd; }
+			.modal-img-zoom img {
+				max-width: 100%;
+				max-height: 70vh;
+				border-radius: 1em;
+				display: block;
+				margin: 0 auto;
+				transition: transform 0.2s;
+			}
+			.modal-img-zoom.zoomed img {
+				transform: scale(2.1);
+				cursor: zoom-out;
+			}
+		</style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Eletrônicos - WR E-Commerce</title>
+	<style>
+		.destaque-animado {
+			animation: destaquePop 1.2s cubic-bezier(.5,1.8,.5,1) both;
+			display: inline-block;
+			font-weight: bold;
+			font-size: 2.2em;
+			background: linear-gradient(270deg, #00e676, #007bff, #ff9800, #00e676);
+			background-size: 600% 600%;
+			background-clip: text;
+			-webkit-background-clip: text;
+			color: transparent;
+			-webkit-text-fill-color: transparent;
+			text-shadow: 0 2px 16px #000, 0 1px 0 #333, 0 0 8px #00e67699;
+			position: relative;
+			transition: text-shadow 0.3s;
+			margin-bottom: 0.2em;
+			filter: drop-shadow(0 0 8px #00e67688);
+		}
+		.destaque-animado::after {
+			content: '';
+			display: block;
+			margin: 0.3em auto 0 auto;
+			width: 60%;
+			height: 4px;
+			border-radius: 2px;
+			background: linear-gradient(90deg, #00e676, #007bff, #ff9800, #00e676);
+			background-size: 300% 100%;
+			animation: underlineMove 2.5s linear infinite;
+			box-shadow: 0 2px 12px #00e67688;
+		}
+		@keyframes gradienteMove {
+			0% { background-position: 0% 50%; }
+			100% { background-position: 100% 50%; }
+		}
+		@keyframes underlineMove {
+			0% { background-position: 0% 0%; }
+			100% { background-position: 100% 0%; }
+		}
+		.destaque-animado {
+			animation: destaquePop 1.2s cubic-bezier(.5,1.8,.5,1) both, gradienteMove 4s linear infinite;
+		}
+		.texto-animado {
+			animation: fadeInUp 1.5s cubic-bezier(.5,1.8,.5,1) both;
+			color: #fff;
+			text-shadow: 0 2px 8px #000, 0 1px 0 #333, 0 0 6px #007bff99;
+			font-size: 1.18em;
+			margin-bottom: 1.2em;
+		}
+		@keyframes destaquePop {
+			0% { transform: scale(0.7) translateY(30px); opacity: 0; }
+			60% { transform: scale(1.1) translateY(-8px); opacity: 1; }
+			100% { transform: scale(1) translateY(0); opacity: 1; }
+		}
+		@keyframes fadeInUp {
+			0% { opacity: 0; transform: translateY(30px); }
+			100% { opacity: 1; transform: translateY(0); }
+		}
+	</style>
+	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+		<script>
+		</script>
+	<header>
+		<div class="header-flex">
+			<a href="index.html"><img class="logo-wr" src="img/logoWR.png" alt="Logo WR E-Commerce" /></a>
+			<button class="menu-toggle" id="menuToggle" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
+			<nav class="menu-principal" id="menuPrincipal">
+				<a href="./index.html"><i class="fas fa-house"></i> Home</a>
+				<a href="camisa.html"><i class="fas fa-shirt"></i> Camisas</a>
+				<a href="bermuda.html"><i class="fas fa-person-walking"></i> Bermudas</a>
+				<a href="acessorios.html"><i class="fas fa-gem"></i> Acessórios</a>
+				<a href="eletronicos.html"><i class="fas fa-headphones"></i> Eletrônicos</a>
+				<a href="carrinho.html"><i class="fas fa-cart-shopping"></i> Carrinho</a>
+			</nav>
+		</div>
+	</header>
+	<main class="home-bg">
+		<section style="margin: 3em auto; max-width: 1200px;">
+			<h1 class="destaque-animado" style="text-align:center;"><i class="fas fa-headphones"></i> Eletrônicos</h1>
+			<p class="texto-animado" style="text-align:center;">Tecnologia, inovação e praticidade para o seu dia a dia!</p>
+			<div class="produtos" style="flex-wrap: wrap; justify-content: center;">
+				<!-- Linha 1 -->
+				<div class="produto" data-nome="Fone Bluetooth" data-preco="149.90" data-img="img/logoWR.png">
+					<img src="img/logoWR.png" alt="Eletrônico 1" class="img-zoom-card">
+					<h3>Fone Bluetooth</h3>
+					<p>R$ 149,90</p>
+					<div class="qtd-carrinho">
+						<button class="btn-qtd" onclick="alterarQtdInput(this,-1)">-</button>
+						<input type="number" min="1" value="1" class="input-qtd" style="width:2.5em;text-align:center;">
+						<button class="btn-qtd" onclick="alterarQtdInput(this,1)">+</button>
+					</div>
+					<button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+				</div>
+				<div class="produto" data-nome="Smartwatch" data-preco="299.90" data-img="img/logoWR.png">
+					<img src="img/logoWR.png" alt="Eletrônico 2" class="img-zoom-card">
+					<h3>Smartwatch</h3>
+					<p>R$ 299,90</p>
+					<div class="qtd-carrinho">
+						<button class="btn-qtd" onclick="alterarQtdInput(this,-1)">-</button>
+						<input type="number" min="1" value="1" class="input-qtd" style="width:2.5em;text-align:center;">
+						<button class="btn-qtd" onclick="alterarQtdInput(this,1)">+</button>
+					</div>
+					<button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+				</div>
+				<div class="produto" data-nome="Caixa de Som" data-preco="99.90" data-img="img/logoWR.png">
+					<img src="img/logoWR.png" alt="Eletrônico 3" class="img-zoom-card">
+					<h3>Caixa de Som</h3>
+					<p>R$ 99,90</p>
+					<div class="qtd-carrinho">
+						<button class="btn-qtd" onclick="alterarQtdInput(this,-1)">-</button>
+						<input type="number" min="1" value="1" class="input-qtd" style="width:2.5em;text-align:center;">
+						<button class="btn-qtd" onclick="alterarQtdInput(this,1)">+</button>
+					</div>
+					<button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+				</div>
+				<div class="produto" data-nome="Carregador Turbo" data-preco="49.90" data-img="img/logoWR.png">
+					<img src="img/logoWR.png" alt="Eletrônico 4" class="img-zoom-card">
+					<h3>Carregador Turbo</h3>
+					<p>R$ 49,90</p>
+					<div class="qtd-carrinho">
+						<button class="btn-qtd" onclick="alterarQtdInput(this,-1)">-</button>
+						<input type="number" min="1" value="1" class="input-qtd" style="width:2.5em;text-align:center;">
+						<button class="btn-qtd" onclick="alterarQtdInput(this,1)">+</button>
+					</div>
+					<button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+				</div>
+				<!-- Linha 2 -->
+				<div class="produto" data-nome="Mouse Sem Fio" data-preco="59.90" data-img="img/logoWR.png">
+					<img src="img/logoWR.png" alt="Eletrônico 5" class="img-zoom-card">
+					<h3>Mouse Sem Fio</h3>
+					<p>R$ 59,90</p>
+					<div class="qtd-carrinho">
+						<button class="btn-qtd" onclick="alterarQtdInput(this,-1)">-</button>
+						<input type="number" min="1" value="1" class="input-qtd" style="width:2.5em;text-align:center;">
+						<button class="btn-qtd" onclick="alterarQtdInput(this,1)">+</button>
+					</div>
+					<button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+				</div>
+				<div class="produto" data-nome="Teclado Gamer" data-preco="129.90" data-img="img/logoWR.png">
+					<img src="img/logoWR.png" alt="Eletrônico 6" class="img-zoom-card">
+					<h3>Teclado Gamer</h3>
+					<p>R$ 129,90</p>
+					<div class="qtd-carrinho">
+						<button class="btn-qtd" onclick="alterarQtdInput(this,-1)">-</button>
+						<input type="number" min="1" value="1" class="input-qtd" style="width:2.5em;text-align:center;">
+						<button class="btn-qtd" onclick="alterarQtdInput(this,1)">+</button>
+					</div>
+					<button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+				</div>
+				<div class="produto" data-nome="Webcam HD" data-preco="89.90" data-img="img/logoWR.png">
+					<img src="img/logoWR.png" alt="Eletrônico 7" class="img-zoom-card">
+					<h3>Webcam HD</h3>
+					<p>R$ 89,90</p>
+					<div class="qtd-carrinho">
+						<button class="btn-qtd" onclick="alterarQtdInput(this,-1)">-</button>
+						<input type="number" min="1" value="1" class="input-qtd" style="width:2.5em;text-align:center;">
+						<button class="btn-qtd" onclick="alterarQtdInput(this,1)">+</button>
+					</div>
+					<button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+				</div>
+				<div class="produto" data-nome="Hub USB" data-preco="39.90" data-img="img/logoWR.png">
+					<img src="img/logoWR.png" alt="Eletrônico 8" class="img-zoom-card">
+					<h3>Hub USB</h3>
+					<p>R$ 39,90</p>
+					<div class="qtd-carrinho">
+						<button class="btn-qtd" onclick="alterarQtdInput(this,-1)">-</button>
+						<input type="number" min="1" value="1" class="input-qtd" style="width:2.5em;text-align:center;">
+						<button class="btn-qtd" onclick="alterarQtdInput(this,1)">+</button>
+					</div>
+					<button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+				</div>
+				<!-- Linha 3 -->
+				<div class="produto" data-nome="Power Bank" data-preco="119.90" data-img="img/logoWR.png">
+					<img src="img/logoWR.png" alt="Eletrônico 9" class="img-zoom-card">
+					<h3>Power Bank</h3>
+					<p>R$ 119,90</p>
+					<div class="qtd-carrinho">
+						<button class="btn-qtd" onclick="alterarQtdInput(this,-1)">-</button>
+						<input type="number" min="1" value="1" class="input-qtd" style="width:2.5em;text-align:center;">
+						<button class="btn-qtd" onclick="alterarQtdInput(this,1)">+</button>
+					</div>
+					<button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+				</div>
+				<div class="produto" data-nome="Relógio Digital" data-preco="139.90" data-img="img/logoWR.png">
+					<img src="img/logoWR.png" alt="Eletrônico 10" class="img-zoom-card">
+					<h3>Relógio Digital</h3>
+					<p>R$ 139,90</p>
+					<div class="qtd-carrinho">
+						<button class="btn-qtd" onclick="alterarQtdInput(this,-1)">-</button>
+						<input type="number" min="1" value="1" class="input-qtd" style="width:2.5em;text-align:center;">
+						<button class="btn-qtd" onclick="alterarQtdInput(this,1)">+</button>
+					</div>
+					<button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+				</div>
+				<div class="produto" data-nome="Smart Lamp" data-preco="79.90" data-img="img/logoWR.png">
+					<img src="img/logoWR.png" alt="Eletrônico 11" class="img-zoom-card">
+					<h3>Smart Lamp</h3>
+					<p>R$ 79,90</p>
+					<div class="qtd-carrinho">
+						<button class="btn-qtd" onclick="alterarQtdInput(this,-1)">-</button>
+						<input type="number" min="1" value="1" class="input-qtd" style="width:2.5em;text-align:center;">
+						<button class="btn-qtd" onclick="alterarQtdInput(this,1)">+</button>
+					</div>
+					<button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+				</div>
+				<div class="produto" data-nome="Mini Ventilador" data-preco="34.90" data-img="img/logoWR.png">
+					<img src="img/logoWR.png" alt="Eletrônico 12" class="img-zoom-card">
+					<h3>Mini Ventilador</h3>
+					<p>R$ 34,90</p>
+					<div class="qtd-carrinho">
+						<button class="btn-qtd" onclick="alterarQtdInput(this,-1)">-</button>
+						<input type="number" min="1" value="1" class="input-qtd" style="width:2.5em;text-align:center;">
+						<button class="btn-qtd" onclick="alterarQtdInput(this,1)">+</button>
+					</div>
+					<button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+				</div>
+			</div>
+		</section>
+	</main>
+		<!-- Modal de Zoom da Imagem -->
+		<div class="modal-img-bg" id="modalImgBg">
+			<div class="modal-img-zoom" id="modalImgZoom">
+				<span class="lupa-zoom" id="btnLupa" title="Aproximar"><i class="fas fa-search-plus"></i></span>
+				<img id="modalImg" src="" alt="Zoom Produto" />
+			</div>
+		</div>
+	<footer style="position: relative; z-index: 10; pointer-events: auto;">
+		<div class="footer-content" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 2em; max-width: 1200px; margin: 0 auto; padding: 2em 0 1em 0;">
+			<div class="footer-info" style="flex:2; min-width:220px; display:flex; flex-direction:column; gap:1em; color:#fff;">
+				<div style="font-size:1.1em;">
+					<i class="fas fa-map-marker-alt"></i>
+					<a href="https://www.google.com/maps/search/?api=1&query=Solimões+49+Diadema+SP+099031-025" target="_blank" style="color:#fff; text-decoration:underline; cursor:pointer;">
+						Solimões, 49 - Diadema/SP, CEP 099031-025
+					</a>
+				</div>
+				<div style="font-size:1.1em;"><i class="fas fa-phone"></i> <a href="tel:+5511932563211" style="color:#fff;text-decoration:none; cursor:pointer;">(11) 93256-3211</a> &nbsp;|&nbsp; <a href="https://wa.me/5511932563211" target="_blank" style="color:#25D366;text-decoration:none; cursor:pointer;"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+				<div style="display:flex; gap:1em; flex-wrap:wrap;">
+					<a href="politica-privacidade.html" style="color:#fff;text-decoration:underline; cursor:pointer;">Política de Privacidade</a>
+					<a href="termos-de-uso.html" style="color:#fff;text-decoration:underline; cursor:pointer;">Termos de Uso</a>
+				</div>
+			</div>
+			<div class="footer-social" style="flex:1; min-width:160px; display:flex; flex-direction:column; gap:1em; align-items:flex-start;">
+				<span style="font-weight:bold; color:#fff;">Redes Sociais</span>
+				<div style="display:flex; gap:1em;">
+					<a href="https://www.facebook.com/wagner.rodrigo.5454?locale=pt_BR" target="_blank" aria-label="Facebook" style="color: #4267B2; cursor:pointer;"><i class="fab fa-facebook fa-lg"></i></a>
+					<a href="https://www.instagram.com/_vaoficial/?hl=pt-br" target="_blank" aria-label="Instagram" style="color: #E1306C; cursor:pointer;"><i class="fab fa-instagram fa-lg"></i></a>
+					<a href="https://twitter.com" target="_blank" aria-label="Twitter" style="color: #1DA1F2; cursor:pointer;"><i class="fab fa-x-twitter fa-lg"></i></a>
+				</div>
+			</div>
+			<div class="footer-cards" style="flex:1; min-width:180px; display:flex; flex-direction:column; gap:0.7em; align-items:flex-start;">
+				<span style="font-weight:bold; color:#fff;">Cartões aceitos</span>
+				<div style="display:flex; gap:0.7em; align-items:center;">
+					<i class="fab fa-cc-visa fa-2x" style="color:#1a1f71;"></i>
+					<i class="fab fa-cc-mastercard fa-2x" style="color:#eb001b;"></i>
+					<i class="fab fa-cc-amex fa-2x" style="color:#2e77bb;"></i>
+					<i class="fab fa-cc-diners-club fa-2x" style="color:#0069aa;"></i>
+					<i class="fab fa-cc-discover fa-2x" style="color:#f76b1c;"></i>
+					<i class="fab fa-cc-paypal fa-2x" style="color:#003087;"></i>
+					<i class="fab fa-pix fa-2x" style="color:#00e676;"></i>
+				</div>
+			</div>
+		</div>
+		<div style="background: #181818; padding: 0.7em 0 0.3em 0; width: 100%; margin-top: 0.5em;">
+			<span style="display:block; text-align:center; color:#fff; font-size:1.08em; letter-spacing:0.5px;">&copy; 2026 WR Todos os direitos reservados.</span>
+		</div>
+	</footer>
+	<script src="https://cdn.jsdelivr.net/npm/tsparticles@3.1.0/tsparticles.bundle.min.js"></script>
+	<script>
+		// Menu hambúrguer responsivo
+		const menuToggle = document.getElementById('menuToggle');
+		const menuPrincipal = document.getElementById('menuPrincipal');
+		function closeMenuOnResize() {
+			if (window.innerWidth > 1024) {
+				menuPrincipal.classList.remove('show');
+			}
+		}
+		if (menuToggle && menuPrincipal) {
+			menuToggle.addEventListener('click', (e) => {
+				e.stopPropagation();
+				menuPrincipal.classList.toggle('show');
+			});
+			// Fecha o menu ao clicar fora
+			document.addEventListener('click', (e) => {
+				if (!menuPrincipal.contains(e.target) && !menuToggle.contains(e.target)) {
+					menuPrincipal.classList.remove('show');
+				}
+			});
+			window.addEventListener('resize', closeMenuOnResize);
+		}
+	</script>
+</body>
+		<script>
+			// Menu hambúrguer responsivo
+			const menuToggle = document.getElementById('menuToggle');
+			const menuPrincipal = document.getElementById('menuPrincipal');
+			function closeMenuOnResize() {
+				if (window.innerWidth > 1024) {
+					menuPrincipal.classList.remove('show');
+					menuPrincipal.style.display = '';
+					menuToggle.style.display = 'none';
+				} else {
+					menuToggle.style.display = 'block';
+					menuPrincipal.classList.remove('show');
+					menuPrincipal.style.display = 'none';
+				}
+			}
+			if (menuToggle && menuPrincipal) {
+				menuToggle.addEventListener('click', (e) => {
+					e.stopPropagation();
+					if (menuPrincipal.classList.contains('show')) {
+						menuPrincipal.classList.remove('show');
+						menuPrincipal.style.display = 'none';
+					} else {
+						menuPrincipal.classList.add('show');
+						menuPrincipal.style.display = 'flex';
+					}
+				});
+				// Fecha o menu ao clicar fora
+				document.addEventListener('click', (e) => {
+					if (!menuPrincipal.contains(e.target) && !menuToggle.contains(e.target)) {
+						menuPrincipal.classList.remove('show');
+						menuPrincipal.style.display = 'none';
+					}
+				});
+				window.addEventListener('resize', closeMenuOnResize);
+				// Inicializa o estado correto ao carregar
+				window.addEventListener('DOMContentLoaded', closeMenuOnResize);
+			}
+		</script>
+	<script>
+	// Zoom de imagem nos cards
+	document.querySelectorAll('.img-zoom-card').forEach(img => {
+		img.style.cursor = 'zoom-in';
+		img.addEventListener('click', function() {
+			const modalBg = document.getElementById('modalImgBg');
+			const modalImg = document.getElementById('modalImg');
+			const modalZoom = document.getElementById('modalImgZoom');
+			modalImg.src = this.src;
+			modalBg.classList.add('active');
+			modalZoom.classList.remove('zoomed');
+		});
+	});
+	// Fechar modal ao clicar fora
+	document.getElementById('modalImgBg').addEventListener('click', function(e) {
+		if (e.target === this) this.classList.remove('active');
+	});
+	// Lupa para zoom extra
+	document.getElementById('btnLupa').addEventListener('click', function(e) {
+		e.stopPropagation();
+		const modalZoom = document.getElementById('modalImgZoom');
+		modalZoom.classList.toggle('zoomed');
+		this.innerHTML = modalZoom.classList.contains('zoomed') ? '<i class="fas fa-search-minus"></i>' : '<i class="fas fa-search-plus"></i>';
+	});
+	// Fechar modal com ESC
+	document.addEventListener('keydown', function(e) {
+		if (e.key === 'Escape') document.getElementById('modalImgBg').classList.remove('active');
+	});
+
+	// Funções Carrinho LocalStorage
+	function getCarrinho() {
+		return JSON.parse(localStorage.getItem('carrinhoWR') || '[]');
+	}
+	function setCarrinho(carrinho) {
+		localStorage.setItem('carrinhoWR', JSON.stringify(carrinho));
+	}
+	// Botão de quantidade
+	function alterarQtdInput(btn, delta) {
+		const input = btn.parentElement.querySelector('.input-qtd');
+		let val = parseInt(input.value) || 1;
+		val += delta;
+		if (val < 1) val = 1;
+		input.value = val;
+	}
+	// Adicionar ao Carrinho
+	document.querySelectorAll('.btn-add-carrinho').forEach(btn => {
+		btn.addEventListener('click', function() {
+			const card = btn.closest('.produto');
+			const nome = card.dataset.nome;
+			const preco = parseFloat(card.dataset.preco);
+			const img = card.dataset.img;
+			const qtd = parseInt(card.querySelector('.input-qtd').value) || 1;
+			let carrinho = getCarrinho();
+			// Se já existe, soma quantidade
+			const idx = carrinho.findIndex(item => item.nome === nome && item.img === img);
+			if (idx >= 0) {
+				carrinho[idx].qtd += qtd;
+			} else {
+				carrinho.push({ nome, preco, img, qtd });
+			}
+			setCarrinho(carrinho);
+			btn.innerHTML = '<i class="fas fa-check"></i> Adicionado!';
+			btn.disabled = true;
+			setTimeout(() => {
+				btn.innerHTML = 'Adicionar ao Carrinho';
+				btn.disabled = false;
+			}, 1200);
+		});
+	});
+	</script>
+</html>

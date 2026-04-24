@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+        <style>
+        @media (max-width: 1024px) {
+            .menu-toggle {
+                display: block !important;
+                background: none;
+                border: none;
+                color: #fff;
+                font-size: 2em;
+                margin-left: auto;
+                cursor: pointer;
+                z-index: 1001;
+            }
+            .menu-principal {
+                display: none !important;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100vw;
+                background: #23272f;
+                box-shadow: 0 8px 32px #000b;
+                border-radius: 0 0 1em 1em;
+                padding: 1.2em 0 1.2em 0;
+                gap: 1.2em;
+                z-index: 1000;
+                opacity: 0.98;
+            }
+            .menu-principal.show {
+                display: flex !important;
+            }
+            .header-flex {
+                flex-direction: row;
+                align-items: center;
+                position: relative;
+            }
+        }
+        @media (max-width: 1024px) {
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5em;
+                text-align: center;
+            }
+        }
+        </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho - WR E-Commerce</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+                @media (max-width: 600px) {
+                    #modalCliente form {
+                        min-width: 0 !important;
+                        max-width: 98vw !important;
+                        padding: 0.7em 0.3em !important;
+                        font-size: 0.97em;
+                    }
+                }
+        .carrinho-container {
+            max-width: 900px;
+            margin: 3em auto;
+            background: #23272fdd;
+            border-radius: 1em;
+            box-shadow: 0 4px 24px #0006;
+            padding: 2em 1.5em 1.5em 1.5em;
+        }
+        .carrinho-titulo {
+            font-size: 2em;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 1.2em;
+            text-align: center;
+        }
+        .carrinho-lista {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2em;
+        }
+        .carrinho-lista th, .carrinho-lista td {
+            padding: 0.8em 0.5em;
+            text-align: center;
+            color: #fff;
+        }
+        .carrinho-lista th {
+            background: #007bffcc;
+            font-weight: bold;
+        }
+        .carrinho-lista td img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            border-radius: 0.5em;
+            background: #fff;
+        }
+        .carrinho-lista td button {
+            background: #ff9800;
+            color: #fff;
+            border: none;
+            border-radius: 0.3em;
+            padding: 0.3em 0.7em;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.2s;
+        }
+        .carrinho-lista td button:hover {
+            background: #e65100;
+        }
+        .carrinho-total {
+            text-align: right;
+            font-size: 1.2em;
+            color: #fff;
+            margin-bottom: 1.5em;
+        }
+        .carrinho-acoes {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1em;
+        }
+        .carrinho-acoes button {
+            background: #00e676;
+            color: #222;
+            border: none;
+            border-radius: 0.3em;
+            padding: 0.7em 1.5em;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .carrinho-acoes button:hover {
+            background: #007bff;
+            color: #fff;
+        }
+        @media (max-width: 700px) {
+            .carrinho-container { padding: 1em 0.2em; }
+            .carrinho-lista th, .carrinho-lista td { font-size: 0.95em; }
+            .carrinho-lista td img { width: 40px; height: 40px; }
+        }
+    </style>
+</head>
+<body>
+        <script>
+        </script>
+    <header>
+        <div class="header-flex">
+            <a href="index.html"><img class="logo-wr" src="img/logoWR.png" alt="Logo WR E-Commerce" /></a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
+            <nav class="menu-principal" id="menuPrincipal">
+                <a href="./index.html"><i class="fas fa-house"></i> Home</a>
+                <a href="camisa.html"><i class="fas fa-shirt"></i> Camisas</a>
+                <a href="bermuda.html"><i class="fas fa-person-walking"></i> Bermudas</a>
+                <a href="acessorios.html"><i class="fas fa-gem"></i> Acessórios</a>
+                <a href="eletronicos.html"><i class="fas fa-headphones"></i> Eletrônicos</a>
+                <a href="carrinho.html"><i class="fas fa-cart-shopping"></i> Carrinho</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="carrinho-container">
+            <div class="carrinho-titulo"><i class="fas fa-cart-shopping"></i> Carrinho de Compras</div>
+            <table class="carrinho-lista" id="carrinhoLista">
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Imagem</th>
+                        <th>Qtd</th>
+                        <th>Valor Unitário</th>
+                        <th>Total</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Itens do carrinho serão inseridos aqui via JS -->
+                </tbody>
+            </table>
+            <div class="carrinho-total" id="carrinhoTotal">Total: R$ 0,00</div>
+            <div class="carrinho-acoes">
+                <button onclick="limparCarrinho()"><i class="fas fa-trash"></i> Limpar Carrinho</button>
+                <button onclick="abrirFormularioCliente()"><i class="fas fa-credit-card"></i> Finalizar Compra</button>
+            </div>
+        </div>
+        <!-- Modal Formulário Cliente -->
+        <div id="modalCliente" style="display:none; position:fixed; z-index:99999; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); justify-content:center; align-items:center;">
+                <form id="formCliente" style="background:#23272f; color:#fff; border-radius:1em; box-shadow:0 4px 32px #000b; padding:1.2em 1.2em; min-width:260px; max-width:400px; width:90vw; display:flex; flex-direction:column; gap:1em; align-items:center;">
+                                <h2 style="margin:0 0 0.5em 0;">Finalizar Pedido</h2>
+                                <p style="background:#222; color:#ffe082; border-radius:0.5em; padding:0.7em 1em; font-size:1em; text-align:center; margin-bottom:0.5em;">
+                                      <strong>Atenção:</strong> Por segurança, solicitamos seus dados (nome, endereço, número/residência ou apto e telefone) para proteger cliente e fornecedor. Usados apenas para entrega e contato.
+                                </p>
+                <input type="text" id="nomeCliente" placeholder="Nome completo" required style="width:100%;padding:0.7em 1em; border-radius:0.5em; border:none; font-size:1.1em;">
+                    <input type="text" id="enderecoCliente" placeholder="Endereço, número, residência ou apto" required style="width:100%;padding:0.6em 1em; border-radius:0.5em; border:none; font-size:1em;">
+                <input type="tel" id="telefoneCliente" placeholder="Telefone/WhatsApp" required style="width:100%;padding:0.7em 1em; border-radius:0.5em; border:none; font-size:1.1em;">
+                <select id="pagamentoCliente" required style="width:100%;padding:0.7em 1em; border-radius:0.5em; border:none; font-size:1.1em;">
+                    <option value="" disabled selected>Forma de pagamento</option>
+                    <option value="Pix">Pix</option>
+                    <option value="Cartão de Crédito">Cartão de Crédito</option>
+                    <option value="Cartão de Débito">Cartão de Débito</option>
+                    <option value="Dinheiro">Dinheiro</option>
+                </select>
+                <div style="display:flex; gap:1em; width:100%; justify-content:flex-end;">
+                    <button type="button" onclick="fecharModalCliente()" style="background:#888; color:#fff; border:none; border-radius:0.3em; padding:0.7em 1.5em; font-size:1em; cursor:pointer;">Cancelar</button>
+                    <button type="submit" style="background:#00e676; color:#222; border:none; border-radius:0.3em; padding:0.7em 1.5em; font-size:1em; font-weight:bold; cursor:pointer;">Enviar Pedido</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <footer style="position: relative; z-index: 10; pointer-events: auto;">
+        <div class="footer-content" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 2em; max-width: 1200px; margin: 0 auto; padding: 2em 0 1em 0;">
+            <div class="footer-info" style="flex:2; min-width:220px; display:flex; flex-direction:column; gap:1em; color:#fff;">
+                <div style="font-size:1.1em;">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Solimões+49+Diadema+SP+099031-025" target="_blank" style="color:#fff; text-decoration:underline; cursor:pointer;">
+                        Solimões, 49 - Diadema/SP, CEP 099031-025
+                    </a>
+                </div>
+                <div style="font-size:1.1em;"><i class="fas fa-phone"></i> <a href="tel:+5511932563211" style="color:#fff;text-decoration:none; cursor:pointer;">(11) 93256-3211</a> &nbsp;|&nbsp; <a href="https://wa.me/5511932563211" target="_blank" style="color:#25D366;text-decoration:none; cursor:pointer;"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+                <div style="display:flex; gap:1em; flex-wrap:wrap;">
+                    <a href="politica-privacidade.html" style="color:#fff;text-decoration:underline; cursor:pointer;">Política de Privacidade</a>
+                    <a href="termos-de-uso.html" style="color:#fff;text-decoration:underline; cursor:pointer;">Termos de Uso</a>
+                </div>
+            </div>
+            <div class="footer-social" style="flex:1; min-width:160px; display:flex; flex-direction:column; gap:1em; align-items:flex-start;">
+                <span style="font-weight:bold; color:#fff;">Redes Sociais</span>
+                <div style="display:flex; gap:1em;">
+                    <a href="https://www.facebook.com/wagner.rodrigo.5454?locale=pt_BR" target="_blank" aria-label="Facebook" style="color: #4267B2; cursor:pointer;"><i class="fab fa-facebook fa-lg"></i></a>
+                    <a href="https://www.instagram.com/_vaoficial/?hl=pt-br" target="_blank" aria-label="Instagram" style="color: #E1306C; cursor:pointer;"><i class="fab fa-instagram fa-lg"></i></a>
+                    <a href="https://twitter.com" target="_blank" aria-label="Twitter" style="color: #1DA1F2; cursor:pointer;"><i class="fab fa-x-twitter fa-lg"></i></a>
+                </div>
+            </div>
+            <div class="footer-cards" style="flex:1; min-width:180px; display:flex; flex-direction:column; gap:0.7em; align-items:flex-start;">
+                <span style="font-weight:bold; color:#fff;">Cartões aceitos</span>
+                <div style="display:flex; gap:0.7em; align-items:center;">
+                    <i class="fab fa-cc-visa fa-2x" style="color:#1a1f71;"></i>
+                    <i class="fab fa-cc-mastercard fa-2x" style="color:#eb001b;"></i>
+                    <i class="fab fa-cc-amex fa-2x" style="color:#2e77bb;"></i>
+                    <i class="fab fa-cc-diners-club fa-2x" style="color:#0069aa;"></i>
+                    <i class="fab fa-cc-discover fa-2x" style="color:#f76b1c;"></i>
+                    <i class="fab fa-cc-paypal fa-2x" style="color:#003087;"></i>
+                    <i class="fab fa-pix fa-2x" style="color:#00e676;"></i>
+                </div>
+            </div>
+        </div>
+        <div style="background: #181818; padding: 0.7em 0 0.3em 0; width: 100%; margin-top: 0.5em;">
+            <span style="display:block; text-align:center; color:#fff; font-size:1.08em; letter-spacing:0.5px;">&copy; 2026 WR Todos os direitos reservados.</span>
+        </div>
+    </footer>
+    <script>
+        // Menu hambúrguer responsivo
+        const menuToggle = document.getElementById('menuToggle');
+        const menuPrincipal = document.getElementById('menuPrincipal');
+        function closeMenuOnResize() {
+            if (window.innerWidth > 1024) {
+                menuPrincipal.classList.remove('show');
+            }
+        }
+        if (menuToggle && menuPrincipal) {
+            menuToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                menuPrincipal.classList.toggle('show');
+            });
+            // Fecha o menu ao clicar fora
+            document.addEventListener('click', (e) => {
+                if (!menuPrincipal.contains(e.target) && !menuToggle.contains(e.target)) {
+                    menuPrincipal.classList.remove('show');
+                }
+            });
+            window.addEventListener('resize', closeMenuOnResize);
+        }
+
+        // Carrinho funcional com localStorage
+        function getCarrinho() {
+            return JSON.parse(localStorage.getItem('carrinhoWR') || '[]');
+        }
+        function setCarrinho(carrinho) {
+            localStorage.setItem('carrinhoWR', JSON.stringify(carrinho));
+        }
+        function renderCarrinho() {
+            const carrinho = getCarrinho();
+            const tbody = document.querySelector('#carrinhoLista tbody');
+            tbody.innerHTML = '';
+            let total = 0;
+            if (carrinho.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6">Seu carrinho está vazio.</td></tr>';
+            } else {
+                carrinho.forEach((item, idx) => {
+                    const subtotal = item.preco * item.qtd;
+                    total += subtotal;
+                    tbody.innerHTML += `
+                        <tr>
+                            <td>${item.nome}</td>
+                            <td><img src="${item.img}" alt="${item.nome}"></td>
+                            <td>
+                                <button onclick="alterarQtd(${idx},-1)">-</button>
+                                ${item.qtd}
+                                <button onclick="alterarQtd(${idx},1)">+</button>
+                            </td>
+                            <td>R$ ${item.preco.toFixed(2)}</td>
+                            <td>R$ ${(subtotal).toFixed(2)}</td>
+                            <td><button onclick="removerItem(${idx})"><i class='fas fa-trash'></i></button></td>
+                        </tr>
+                    `;
+                });
+            }
+            document.getElementById('carrinhoTotal').innerText = 'Total: R$ ' + total.toFixed(2);
+        }
+        function alterarQtd(idx, delta) {
+            const carrinho = getCarrinho();
+            carrinho[idx].qtd += delta;
+            if (carrinho[idx].qtd < 1) carrinho[idx].qtd = 1;
+            setCarrinho(carrinho);
+            renderCarrinho();
+        }
+        function removerItem(idx) {
+            let carrinho = getCarrinho();
+            carrinho.splice(idx, 1);
+            setCarrinho(carrinho);
+            renderCarrinho();
+        }
+        function limparCarrinho() {
+            if (confirm('Deseja realmente limpar o carrinho?')) {
+                setCarrinho([]);
+                renderCarrinho();
+            }
+        }
+        function abrirFormularioCliente() {
+            if (getCarrinho().length === 0) {
+                alert('Seu carrinho está vazio!');
+                return;
+            }
+            document.getElementById('modalCliente').style.display = 'flex';
+        }
+        function fecharModalCliente() {
+            document.getElementById('modalCliente').style.display = 'none';
+        }
+        document.getElementById('formCliente').onsubmit = function(e) {
+            e.preventDefault();
+            const nome = document.getElementById('nomeCliente').value.trim();
+            const endereco = document.getElementById('enderecoCliente').value.trim();
+            const telefone = document.getElementById('telefoneCliente').value.trim();
+            const pagamento = document.getElementById('pagamentoCliente').value;
+            if (!nome || !endereco || !telefone || !pagamento) {
+                alert('Preencha todos os campos!');
+                return;
+            }
+            const carrinho = getCarrinho();
+            let texto = `*Pedido WR E-Commerce*%0A`;
+            texto += `Nome: ${nome}%0A`;
+            texto += `Endereço: ${endereco}%0A`;
+            texto += `Telefone: ${telefone}%0A`;
+            texto += `Forma de pagamento: ${pagamento}%0A`;
+            texto += `%0A*Itens do pedido:*%0A`;
+            let total = 0;
+            carrinho.forEach(item => {
+                texto += `- ${item.nome} (Qtd: ${item.qtd}) - R$ ${item.preco.toFixed(2)}%0A`;
+                total += item.preco * item.qtd;
+            });
+            texto += `%0A*Total: R$ ${total.toFixed(2)}*`;
+            // WhatsApp da loja
+            const numeroLoja = '5511932563211';
+            const url = `https://wa.me/${numeroLoja}?text=${texto}`;
+            window.open(url, '_blank');
+            setCarrinho([]);
+            fecharModalCliente();
+            renderCarrinho();
+        };
+        // Inicializa carrinho ao abrir página
+        renderCarrinho();
+    </script>
+</body>
+    <script>
+        // Menu hambúrguer responsivo
+        const menuToggle = document.getElementById('menuToggle');
+        const menuPrincipal = document.getElementById('menuPrincipal');
+        function closeMenuOnResize() {
+            if (window.innerWidth > 1024) {
+                menuPrincipal.classList.remove('show');
+                menuPrincipal.style.display = '';
+                menuToggle.style.display = 'none';
+            } else {
+                menuToggle.style.display = 'block';
+                menuPrincipal.classList.remove('show');
+                menuPrincipal.style.display = 'none';
+            }
+        }
+        if (menuToggle && menuPrincipal) {
+            menuToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (menuPrincipal.classList.contains('show')) {
+                    menuPrincipal.classList.remove('show');
+                    menuPrincipal.style.display = 'none';
+                } else {
+                    menuPrincipal.classList.add('show');
+                    menuPrincipal.style.display = 'flex';
+                }
+            });
+            // Fecha o menu ao clicar fora
+            document.addEventListener('click', (e) => {
+                if (!menuPrincipal.contains(e.target) && !menuToggle.contains(e.target)) {
+                    menuPrincipal.classList.remove('show');
+                    menuPrincipal.style.display = 'none';
+                }
+            });
+            window.addEventListener('resize', closeMenuOnResize);
+            // Inicializa o estado correto ao carregar
+            window.addEventListener('DOMContentLoaded', closeMenuOnResize);
+        }
+    </script>
+</html>

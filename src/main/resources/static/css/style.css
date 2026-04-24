@@ -1,0 +1,300 @@
+/* ========== MENU HAMBÚRGUER RESPONSIVO ========== */
+.menu-toggle {
+	display: none;
+}
+
+/* Removido bloco de responsividade do menu para evitar conflito com o CSS inline das páginas. O controle do menu hambúrguer será feito apenas pelo CSS inline de cada página. */
+table { width: 100%; border-collapse: collapse; margin-bottom: 1em; }
+th, td { border: 1px solid #ccc; padding: 0.5em; text-align: center; }
+button, input[type="submit"] { background: #007bff; color: #fff; border: none; padding: 0.5em 1em; border-radius: 4px; cursor: pointer; }
+button:hover, input[type="submit"]:hover { background: #0056b3; }
+form { display: inline; }
+label { display: block; margin: 0.5em 0; }
+
+/* =========================
+   RESET E BASE GERAL
+========================= */
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	background: #f7f7f7;
+	color: #222;
+	transition: background 0.5s, color 0.5s;
+}
+
+/* =========================
+   HEADER E MENU PRINCIPAL
+========================= */
+header, footer {
+	background: #222;
+	color: #fff;
+	padding: 1em;
+	text-align: center;
+	transition: background 0.5s, color 0.5s;
+}
+
+nav.menu-principal {
+	margin-top: 1em;
+	display: flex;
+	justify-content: center;
+	gap: 1.5em;
+	flex-wrap: wrap;
+}
+nav.menu-principal a {
+	color: #fff;
+	text-decoration: none;
+	font-weight: bold;
+	padding: 0.5em 1em;
+	border-radius: 4px;
+	transition: background 0.3s, color 0.3s, transform 0.2s;
+}
+nav.menu-principal a:hover {
+	background: #007bff;
+	color: #fff;
+	transform: scale(1.08);
+}
+
+/* =========================
+   BANNER E HOME
+========================= */
+/* Fundo customizado do usuário */
+.home-bg {
+	min-height: 70vh;
+	background: url('../home/img/fundo.moderno.png') no-repeat center center/cover;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+}
+
+/* Logo WR menor e alinhado ao menu */
+.logo-wr {
+	width: 70px;
+	height: auto;
+	max-width: 70px;
+	display: inline-block;
+	margin: 0 0.4em 0 0;
+	vertical-align: middle;
+}
+
+.header-flex {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 0.5em;
+}
+
+nav.menu-principal {
+	flex: 1;
+	justify-content: center;
+	gap: 1.5em;
+}
+.banner-atrativo {
+	background: rgba(34,34,34,0.7);
+	color: #fff;
+	padding: 3em 2em;
+	border-radius: 16px;
+	margin: 2em 0;
+	box-shadow: 0 8px 32px #0005;
+	animation: fadeInDown 1s;
+}
+@keyframes fadeInDown {
+	from { opacity: 0; transform: translateY(-40px); }
+	to { opacity: 1; transform: translateY(0); }
+}
+.banner-texto h2 {
+	font-size: 2.5em;
+	margin-bottom: 0.5em;
+}
+.banner-texto p {
+	font-size: 1.2em;
+	margin-bottom: 1.5em;
+}
+.btn-comprar {
+	background: #ff9800;
+	color: #fff;
+	padding: 0.8em 2em;
+	border: none;
+	border-radius: 8px;
+	font-size: 1.1em;
+	cursor: pointer;
+	text-decoration: none;
+	transition: background 0.3s, transform 0.2s;
+}
+.btn-comprar:hover {
+	background: #e65100;
+	transform: scale(1.05);
+}
+
+/* =========================
+   CATEGORIAS
+========================= */
+.categorias {
+	margin: 2em 0;
+	background: rgba(255,255,255,0.85);
+	border-radius: 12px;
+	padding: 2em;
+	box-shadow: 0 2px 12px #0002;
+	animation: fadeInUp 1.2s;
+}
+@keyframes fadeInUp {
+	from { opacity: 0; transform: translateY(40px); }
+	to { opacity: 1; transform: translateY(0); }
+}
+.categorias ul {
+	list-style: none;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.5em;
+	justify-content: center;
+}
+.categorias li a {
+	background: #007bff;
+	color: #fff;
+	padding: 0.7em 1.5em;
+	border-radius: 6px;
+	text-decoration: none;
+	font-weight: 500;
+	transition: background 0.3s, transform 0.2s;
+}
+.categorias li a:hover {
+	background: #0056b3;
+	transform: scale(1.08);
+}
+
+/* =========================
+   PRODUTOS E TABELAS
+========================= */
+.produtos {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 2em;
+}
+.produto {
+	background: #fff;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	padding: 1em;
+	width: 220px;
+	box-shadow: 0 2px 8px #0001;
+	transition: box-shadow 0.3s, transform 0.2s;
+}
+.produto:hover {
+	box-shadow: 0 6px 24px #007bff44;
+	transform: translateY(-6px) scale(1.03);
+}
+.produto img {
+	width: 100%;
+	height: 150px;
+	object-fit: cover;
+	border-radius: 4px;
+}
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 1em;
+}
+th, td {
+	border: 1px solid #ccc;
+	padding: 0.5em;
+	text-align: center;
+}
+
+/* =========================
+   FORMULÁRIOS E BOTÕES
+========================= */
+button, input[type="submit"] {
+	background: #007bff;
+	color: #fff;
+	border: none;
+	padding: 0.5em 1em;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background 0.3s, transform 0.2s;
+}
+button:hover, input[type="submit"]:hover {
+	background: #0056b3;
+	transform: scale(1.05);
+}
+form { display: inline; }
+label { display: block; margin: 0.5em 0; }
+
+/* =========================
+   MODO NOTURNO E ACESSIBILIDADE
+========================= */
+.dark-mode {
+	background: #181818 !important;
+	color: #f7f7f7 !important;
+}
+.dark-mode header, .dark-mode footer {
+	background: #111 !important;
+	color: #ffeb3b !important;
+}
+.dark-mode nav.menu-principal a {
+	color: #ffeb3b !important;
+}
+.dark-mode nav.menu-principal a:hover {
+	background: #333 !important;
+	color: #fff !important;
+}
+.dark-mode .banner-atrativo {
+	background: rgba(24,24,24,0.85) !important;
+	color: #ffeb3b !important;
+}
+.dark-mode .categorias {
+	background: rgba(34,34,34,0.95) !important;
+	color: #ffeb3b !important;
+}
+.dark-mode .categorias li a {
+	background: #333 !important;
+	color: #ffeb3b !important;
+}
+.dark-mode .categorias li a:hover {
+	background: #007bff !important;
+	color: #fff !important;
+}
+.dark-mode .produto {
+	background: #222 !important;
+	color: #ffeb3b !important;
+	border-color: #444 !important;
+}
+.dark-mode table, .dark-mode th, .dark-mode td {
+	background: #222 !important;
+	color: #ffeb3b !important;
+	border-color: #444 !important;
+}
+.dark-mode button, .dark-mode input[type="submit"] {
+	background: #ffeb3b !important;
+	color: #222 !important;
+}
+.dark-mode button:hover, .dark-mode input[type="submit"]:hover {
+	background: #ffd600 !important;
+	color: #222 !important;
+}
+
+/* =========================
+   ACESSIBILIDADE
+========================= */
+.acessibilidade {
+	position: fixed;
+	top: 1em;
+	right: 1em;
+	z-index: 1000;
+}
+.acessibilidade button {
+	background: #ff9800;
+	color: #fff;
+	border: none;
+	padding: 0.5em 1em;
+	border-radius: 6px;
+	margin-left: 0.5em;
+	font-size: 1em;
+	cursor: pointer;
+	transition: background 0.3s;
+}
+.acessibilidade button:hover {
+	background: #e65100;
+}

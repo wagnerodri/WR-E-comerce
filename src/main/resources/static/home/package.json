@@ -1,0 +1,8 @@
+{
+  "name": "wr-ecommerce",
+  "version": "1.0.0",
+  "description": "WR E-Commerce static site for Netlify deployment.",
+  "scripts": {},
+  "author": "",
+  "license": "ISC"
+}

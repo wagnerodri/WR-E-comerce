@@ -1,0 +1,4 @@
+/*
+  This _redirects file ensures that all routes are redirected to index.html for SPA support on Netlify.
+*/
+/*    /index.html   200

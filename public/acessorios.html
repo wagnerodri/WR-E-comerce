@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<!-- ...restante do head... -->
+</head>
+<body>
+	<header>
+		<div class="header-flex">
+			<a href="index.html"><img class="logo-wr" src="img/logoWR.png" alt="Logo WR E-Commerce" /></a>
+			<button class="menu-toggle" id="menuToggle" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
+			<nav class="menu-principal" id="menuPrincipal">
+				<a href="index.html"><i class="fas fa-house"></i> Home</a>
+				<a href="camisa.html"><i class="fas fa-shirt"></i> Camisas</a>
+				<a href="bermuda.html"><i class="fas fa-person-walking"></i> Bermudas</a>
+				<a href="acessorios.html"><i class="fas fa-gem"></i> Acessórios</a>
+				<a href="eletronicos.html"><i class="fas fa-headphones"></i> Eletrônicos</a>
+				<a href="carrinho.html"><i class="fas fa-cart-shopping"></i> Carrinho</a>
+			</nav>
+		</div>
+	</header>
+	<main class="home-bg">
+		<section style="margin: 3em auto; max-width: 1200px;">
+			<h1 class="destaque-animado" style="text-align:center;"><i class="fas fa-gem"></i> Acessórios</h1>
+			<p class="texto-animado" style="text-align:center;">Acessórios para complementar seu estilo e praticidade no dia a dia!</p>
+			<div class="produtos" style="flex-wrap: wrap; justify-content: center;">
+				<!-- Linha 1 -->
+				<div class="produto" data-nome="Relógio Digital" data-preco="129.90" data-img="img/logoWR.png">
+					<img src="img/logoWR.png" alt="Acessório 1" class="img-zoom-card">
+					<h3>Relógio Digital</h3>
+					<p>R$ 129,90</p>
+					<div class="qtd-carrinho">
+						<button class="btn-qtd" onclick="alterarQtdInput(this,-1)">-</button>
+						<input type="number" min="1" value="1" class="input-qtd" style="width:2.5em;text-align:center;">
+						<button class="btn-qtd" onclick="alterarQtdInput(this,1)">+</button>
+					</div>
+					<button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+				</div>
+				<div class="produto" data-nome="Pulseira Couro" data-preco="39.90" data-img="img/logoWR.png">
+					<img src="img/logoWR.png" alt="Acessório 2" class="img-zoom-card">
+					<h3>Pulseira Couro</h3>
+					<p>R$ 39,90</p>
+					<div class="qtd-carrinho">
+						<button class="btn-qtd" onclick="alterarQtdInput(this,-1)">-</button>
+						<input type="number" min="1" value="1" class="input-qtd" style="width:2.5em;text-align:center;">
+						<button class="btn-qtd" onclick="alterarQtdInput(this,1)">+</button>
+					</div>
+					<button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+				</div>
+				<!-- ...demais produtos... -->
+			</div>
+		</section>
+	</main>
+</body>
+</html>

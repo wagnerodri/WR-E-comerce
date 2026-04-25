@@ -1,6 +1,6 @@
 # Netlify configuration file
 [build]
-  publish = "src/main/resources/static/home"
+  publish = "public"
   command = ""
 
 # Redirect all requests to index.html for SPA behavior

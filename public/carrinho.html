@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho - WR E-Commerce</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- ...restante do head... -->
+</head>
+<body>
+    <header>
+        <div class="header-flex">
+            <a href="index.html"><img class="logo-wr" src="img/logoWR.png" alt="Logo WR E-Commerce" /></a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
+            <nav class="menu-principal" id="menuPrincipal">
+                <a href="index.html"><i class="fas fa-house"></i> Home</a>
+                <a href="camisa.html"><i class="fas fa-shirt"></i> Camisas</a>
+                <a href="bermuda.html"><i class="fas fa-person-walking"></i> Bermudas</a>
+                <a href="acessorios.html"><i class="fas fa-gem"></i> Acessórios</a>
+                <a href="eletronicos.html"><i class="fas fa-headphones"></i> Eletrônicos</a>
+                <a href="carrinho.html"><i class="fas fa-cart-shopping"></i> Carrinho</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="carrinho-container">
+            <div class="carrinho-titulo"><i class="fas fa-cart-shopping"></i> Carrinho de Compras</div>
+            <table class="carrinho-lista" id="carrinhoLista">
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Imagem</th>
+                        <th>Qtd</th>
+                        <th>Valor Unitário</th>
+                        <th>Total</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Itens do carrinho serão inseridos aqui via JS -->
+                </tbody>
+            </table>
+            <div class="carrinho-total" id="carrinhoTotal">Total: R$ 0,00</div>
+            <div class="carrinho-acoes">
+                <button onclick="limparCarrinho()"><i class="fas fa-trash"></i> Limpar Carrinho</button>
+                <button onclick="abrirFormularioCliente()"><i class="fas fa-credit-card"></i> Finalizar Compra</button>
+            </div>
+        </div>
+        <!-- Modal Formulário Cliente -->
+        <div id="modalCliente" style="display:none; position:fixed; z-index:99999; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); justify-content:center; align-items:center;">
+                <form id="formCliente" style="background:#23272f; color:#fff; border-radius:1em; box-shadow:0 4px 32px #000b; padding:1.2em 1.2em; min-width:260px; max-width:400px; width:90vw; display:flex; flex-direction:column; gap:1em; align-items:center;">
+                                <h2 style="margin:0 0 0.5em 0;">Finalizar Pedido</h2>
+                                <p style="background:#222; color:#ffe082; border-radius:0.5em; padding:0.7em 1em; font-size:1em; text-align:center; margin-bottom:0.5em;">
+                                      <strong>Atenção:</strong> Por segurança, solicitamos seus dados (nome, endereço, número/residência ou apto e telefone) para proteger cliente e fornecedor. Usados apenas para entrega e contato.
+                                </p>
+                <input type="text" id="nomeCliente" placeholder="Nome completo" required style="width:100%;padding:0.7em 1em; border-radius:0.5em; border:none; font-size:1.1em;">
+                    <input type="text" id="enderecoCliente" placeholder="Endereço, número, residência ou apto" required style="width:100%;padding:0.6em 1em; border-radius:0.5em; border:none; font-size:1em;">
+                <input type="tel" id="telefoneCliente" placeholder="Telefone/WhatsApp" required style="width:100%;padding:0.7em 1em; border-radius:0.5em; border:none; font-size:1.1em;">
+                <select id="pagamentoCliente" required style="width:100%;padding:0.7em 1em; border-radius:0.5em; border:none; font-size:1.1em;">
+                    <option value="" disabled selected>Forma de pagamento</option>
+                    <option value="Pix">Pix</option>
+                    <option value="Cartão de Crédito">Cartão de Crédito</option>
+                    <option value="Cartão de Débito">Cartão de Débito</option>
+                </select>
+                <button type="submit" style="background:#007bff; color:#fff; border:none; border-radius:0.3em; padding:0.7em 1.5em; font-size:1.1em; font-weight:bold; cursor:pointer; margin-top:1em;">Enviar Pedido</button>
+                <button type="button" onclick="fecharModalCliente()" style="background:#e65100; color:#fff; border:none; border-radius:0.3em; padding:0.7em 1.5em; font-size:1.1em; font-weight:bold; cursor:pointer; margin-top:0.5em;">Cancelar</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>
